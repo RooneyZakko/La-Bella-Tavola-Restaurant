@@ -2,8 +2,23 @@
 require_once '../includes/auth.php';
 require_once '../config/db.php';
 
-$stmt = $pdo->query("SELECT * FROM menu_items ORDER BY category, name");
+$stmt = $pdo->query("SELECT * FROM menu_items ORDER BY category ASC, id DESC");
 $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+function getCategoryBadgeClass($category) {
+    switch ($category) {
+        case 'Voorgerechten':
+            return 'badge-voorgerechten';
+        case 'Hoofdgerechten':
+            return 'badge-hoofdgerechten';
+        case 'Desserts':
+            return 'badge-desserts';
+        case 'Drankjes':
+            return 'badge-drankjes';
+        default:
+            return 'badge-default';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -47,32 +62,52 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <table class="admin-table">
                     <thead>
                         <tr>
+                            <th>Afbeelding</th>
                             <th>Naam</th>
                             <th>Categorie</th>
                             <th>Beschrijving</th>
                             <th>Prijs</th>
-                            <th>Afbeelding</th>
                             <th>Acties</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($items as $item): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($item['name']); ?></td>
-                                <td><?php echo htmlspecialchars($item['category']); ?></td>
-                                <td><?php echo htmlspecialchars($item['description']); ?></td>
-                                <td>€ <?php echo number_format($item['price'], 2, ',', '.'); ?></td>
-                                <td><?php echo htmlspecialchars($item['image']); ?></td>
                                 <td>
                                     <?php if (!empty($item['image'])): ?>
-                                        <img src="../<?php echo htmlspecialchars($item['image']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" style="width:80px; height:60px; object-fit:cover; border-radius:8px;">
+                                        <img 
+                                            src="../<?php echo htmlspecialchars($item['image']); ?>" 
+                                            alt="<?php echo htmlspecialchars($item['name']); ?>" 
+                                            class="admin-menu-thumb"
+                                        >
                                     <?php else: ?>
-                                        Geen afbeelding
+                                        <span class="no-image">Geen afbeelding</span>
                                     <?php endif; ?>
                                 </td>
+
                                 <td>
-                                    <a class="action-link" href="menu_edit.php?id=<?php echo $item['id']; ?>">Bewerken</a>
-                                    <a class="action-link delete-link" href="menu_delete.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Weet je zeker dat je dit item wilt verwijderen?');">Verwijderen</a>
+                                    <strong><?php echo htmlspecialchars($item['name']); ?></strong>
+                                </td>
+
+                                <td>
+                                    <span class="category-badge <?php echo getCategoryBadgeClass($item['category']); ?>">
+                                        <?php echo htmlspecialchars($item['category']); ?>
+                                    </span>
+                                </td>
+
+                                <td class="description-cell">
+                                    <?php echo htmlspecialchars($item['description']); ?>
+                                </td>
+
+                                <td>
+                                    <span class="price-badge">€ <?php echo number_format($item['price'], 2, ',', '.'); ?></span>
+                                </td>
+
+                                <td>
+                                    <div class="table-actions">
+                                        <a class="action-link" href="menu_edit.php?id=<?php echo $item['id']; ?>">Bewerken</a>
+                                        <a class="action-link delete-link" href="menu_delete.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Weet je zeker dat je dit item wilt verwijderen?');">Verwijderen</a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
