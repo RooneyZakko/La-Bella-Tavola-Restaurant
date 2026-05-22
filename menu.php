@@ -33,10 +33,11 @@ function categoryId($category) {
     <div class="container">
 
         <div class="menu-filter">
-            <a href="#voorgerechten" class="filter-btn">Voorgerechten</a>
-            <a href="#hoofdgerechten" class="filter-btn">Hoofdgerechten</a>
             <a href="#desserts" class="filter-btn">Desserts</a>
             <a href="#drankjes" class="filter-btn">Drankjes</a>
+            <a href="#hoofdgerechten" class="filter-btn">Hoofdgerechten</a>
+            <a href="#voorgerechten" class="filter-btn">Voorgerechten</a>
+
         </div>
 
         <?php if (!empty($groupedItems)): ?>

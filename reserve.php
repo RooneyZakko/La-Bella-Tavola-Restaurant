@@ -35,17 +35,17 @@ unset($_SESSION['reservation_errors']);
         <form action="process_reservation.php" method="POST" id="reservationForm" class="form-card">
             <div class="form-group">
                 <label for="name">Naam</label>
-                <input type="text" name="name" id="name" required value="<?php echo htmlspecialchars($old['name'] ?? ''); ?>">
+                <input type="text" name="name" id="name" required placeholder="Rooney Zakko" value="<?php echo htmlspecialchars($old['name'] ?? ''); ?>">
             </div>
 
             <div class="form-group">
                 <label for="phone">Telefoonnummer</label>
-                <input type="text" name="phone" id="phone" required value="<?php echo htmlspecialchars($old['phone'] ?? ''); ?>">
+                <input type="text" name="phone" id="phone" required placeholder="06 12345678" value="<?php echo htmlspecialchars($old['phone'] ?? ''); ?>">
             </div>
 
             <div class="form-group">
                 <label for="email">E-mailadres</label>
-                <input type="email" name="email" id="email" required value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>">
+                <input type="email" name="email" id="email" required placeholder="labellatavola@example.com" value="<?php echo htmlspecialchars($old['email'] ?? ''); ?>">
             </div>
 
             <div class="form-group">
@@ -60,12 +60,12 @@ unset($_SESSION['reservation_errors']);
 
             <div class="form-group">
                 <label for="guests">Aantal personen</label>
-                <input type="number" name="guests" id="guests" min="1" max="20" required value="<?php echo htmlspecialchars((string)($old['guests'] ?? '')); ?>">
+                <input type="number" name="guests" id="guests" min="1" max="20" required placeholder="2" value="<?php echo htmlspecialchars((string)($old['guests'] ?? '')); ?>">
             </div>
 
             <div class="form-group full-width">
                 <label for="notes">Opmerkingen</label>
-                <textarea name="notes" id="notes" rows="4"><?php echo htmlspecialchars($old['notes'] ?? ''); ?></textarea>
+                <textarea name="notes" id="notes" rows="4" placeholder="Ik heb een allergie, dus ik kan dit niet eten."><?php echo htmlspecialchars($old['notes'] ?? ''); ?></textarea>
             </div>
 
             <div class="form-group full-width">
