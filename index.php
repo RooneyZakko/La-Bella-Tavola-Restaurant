@@ -1,4 +1,11 @@
-<?php include 'includes/header.php'; ?>
+<?php
+require_once 'config/db.php';
+include 'includes/header.php';
+
+// Laatste 3 gerechten ophalen
+$stmt = $pdo->query("SELECT * FROM menu_items ORDER BY id DESC LIMIT 3");
+$latestDishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 
 <section class="hero">
     <div class="container hero-content">
@@ -28,36 +35,30 @@
     <div class="container">
         <h2>Uitgelichte gerechten</h2>
         <div class="cards">
-            <div class="card">
-                <img src="assets/images/dish1.jpg" alt="Pasta">
-                <div class="card-body">
-                    <h3>Romige Truffel Pasta</h3>
-                    <p>Verse pasta met romige saus, champignons en truffelolie.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="assets/images/dish2.jpg" alt="Steak">
-                <div class="card-body">
-                    <h3>Gegrilde Biefstuk</h3>
-                    <p>Sappige biefstuk met groenten van het seizoen en aardappelen.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="assets/images/dish3.jpg" alt="Dessert">
-                <div class="card-body">
-                    <h3>Tiramisu Deluxe</h3>
-                    <p>Een klassieke tiramisu met een verfijnde twist van cacao en espresso.</p>
-                </div>
-            </div>
+            <?php if (!empty($latestDishes)): ?>
+                <?php foreach ($latestDishes as $dish): ?>
+                    <div class="card">
+                        <img 
+                            src="<?php echo !empty($dish['image']) ? htmlspecialchars($dish['image']) : 'assets/images/placeholder.jpg'; ?>" 
+                            alt="<?php echo htmlspecialchars($dish['name']); ?>"
+                        >
+                        <div class="card-body">
+                            <h3><?php echo htmlspecialchars($dish['name']); ?></h3>
+                            <p><?php echo htmlspecialchars($dish['description']); ?></p>
+                            <span class="price">€ <?php echo number_format($dish['price'], 2, ',', '.'); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Er zijn nog geen gerechten beschikbaar.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
 
 <section class="cta section">
     <div class="container cta-box">
-        <h2 style="color: #fff;">Wil je een tafel reserveren?</h2>
+        <h2>Wil je een tafel reserveren?</h2>
         <p>Reserveer eenvoudig online en verzeker jezelf van een plek in ons restaurant.</p>
         <a href="reserve.php" class="btn">Reserveer een tafel</a>
     </div>

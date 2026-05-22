@@ -9,6 +9,17 @@ $groupedItems = [];
 foreach ($items as $item) {
     $groupedItems[$item['category']][] = $item;
 }
+
+function categoryId($category) {
+    $map = [
+        'Voorgerechten' => 'voorgerechten',
+        'Hoofdgerechten' => 'hoofdgerechten',
+        'Desserts' => 'desserts',
+        'Drankjes' => 'drankjes'
+    ];
+
+    return $map[$category] ?? strtolower(str_replace(' ', '-', $category));
+}
 ?>
 
 <section class="page-header">
@@ -20,14 +31,26 @@ foreach ($items as $item) {
 
 <section class="section">
     <div class="container">
+
+        <div class="menu-filter">
+            <a href="#voorgerechten" class="filter-btn">Voorgerechten</a>
+            <a href="#hoofdgerechten" class="filter-btn">Hoofdgerechten</a>
+            <a href="#desserts" class="filter-btn">Desserts</a>
+            <a href="#drankjes" class="filter-btn">Drankjes</a>
+        </div>
+
         <?php if (!empty($groupedItems)): ?>
             <?php foreach ($groupedItems as $category => $categoryItems): ?>
-                <div class="menu-category">
+                <div class="menu-category" id="<?php echo htmlspecialchars(categoryId($category)); ?>">
                     <h2><?php echo htmlspecialchars($category); ?></h2>
+
                     <div class="menu-grid">
                         <?php foreach ($categoryItems as $item): ?>
                             <div class="menu-item-card">
-                                <img src="<?php echo !empty($item['image']) ? htmlspecialchars($item['image']) : 'assets/images/placeholder.jpg'; ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                                <img 
+                                    src="<?php echo !empty($item['image']) ? htmlspecialchars($item['image']) : 'assets/images/placeholder.jpg'; ?>" 
+                                    alt="<?php echo htmlspecialchars($item['name']); ?>"
+                                >
                                 <div class="menu-item-content">
                                     <h3><?php echo htmlspecialchars($item['name']); ?></h3>
                                     <p><?php echo htmlspecialchars($item['description']); ?></p>
