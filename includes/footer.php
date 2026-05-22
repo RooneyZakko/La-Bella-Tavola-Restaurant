@@ -6,12 +6,14 @@
                 <h3>La Bella Tavola</h3>
                 <p>Een modern restaurant met verse gerechten, warme sfeer en uitstekende service.</p>
             </div>
-            <div>
+
+            <div class="opening-hours">
                 <h3>Openingstijden</h3>
-                <p>Ma - Do: 12:00 - 22:00</p>
-                <p>Vr - Za: 12:00 - 23:00</p>
-                <p>Zondag: 13:00 - 21:00</p>
+                <div><span>Ma - Do</span><span>12:00 - 22:00</span></div>
+                <div><span>Vr - Za</span><span>12:00 - 23:00</span></div>
+                <div><span>Zondag</span><span>13:00 - 21:00</span></div>
             </div>
+
             <div>
                 <h3>Contact</h3>
                 <p>Stationsstraat 10, Tilburg</p>
@@ -19,6 +21,7 @@
                 <p>info@labellatavola.nl</p>
             </div>
         </div>
+
         <div class="container footer-bottom">
             <p>&copy; <?php echo date('Y'); ?> La Bella Tavola. Alle rechten voorbehouden.</p>
         </div>
