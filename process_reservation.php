@@ -93,8 +93,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'neym759@gmail.com';
-    $mail->Password   = 'ykmwhjuwueydmlvi
-';
+    $mail->Password   = 'ykmwhjuwueydmlvi';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port       = 465;
     $mail->CharSet    = 'UTF-8';
