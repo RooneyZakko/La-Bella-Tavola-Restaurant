@@ -108,6 +108,7 @@ if (isPost()) {
                 <a href="dashboard.php">Dashboard</a>
                 <a href="reservations.php">Reserveringen</a>
                 <a href="menu_items.php">Menu-items</a>
+                <a href="contact_messages.php">Contactberichten</a>
                 <a href="logout.php">Uitloggen</a>
             </nav>
         </aside>
