@@ -16,7 +16,7 @@
 
             <div>
                 <h3>Contact</h3>
-                <p>Stationsstraat 10, Tilburg</p>
+                <p>Heuvelstraat, Tilburg</p>
                 <p>013-1234567</p>
                 <p>info@labellatavola.nl</p>
             </div>

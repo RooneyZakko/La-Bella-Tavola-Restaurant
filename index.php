@@ -58,7 +58,7 @@ $latestDishes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <section class="cta section">
     <div class="container cta-box">
-        <h2>Wil je een tafel reserveren?</h2>
+        <h2 style="color: white;">Wil je een tafel reserveren?</h2>
         <p>Reserveer eenvoudig online en verzeker jezelf van een plek in ons restaurant.</p>
         <a href="reserve.php" class="btn">Reserveer een tafel</a>
     </div>

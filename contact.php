@@ -20,7 +20,7 @@ unset($_SESSION['contact_errors']);
     <div class="container contact-grid">
         <div class="contact-info">
             <h2>Contactgegevens</h2>
-            <p><strong>Adres:</strong> Stationsstraat 10, Tilburg</p>
+            <p><strong>Adres:</strong> Heuvelstraat, Tilburg</p>
             <p><strong>Telefoon:</strong> 013-1234567</p>
             <p><strong>E-mail:</strong> info@labellatavola.nl</p>
 
